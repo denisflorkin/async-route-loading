@@ -1,0 +1,25 @@
+{
+  "name": "async-loading",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "help": "uxi-cli",
+    "dev": "uxi-cli dev",
+    "build": "uxi-cli build",
+    "lint": "uxi-cli lint ./src",
+    "test": "uxi-cli test",
+    "test:coverage": "uxi-cli test:coverage",
+    "test:watch": "uxi-cli test:watch",
+    "pack": "uxi-cli pack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "uxi-cli": "^1.0.79"
+  }
+}
