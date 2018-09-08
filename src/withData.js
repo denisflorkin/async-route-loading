@@ -57,13 +57,6 @@ class JSONDataFetcher extends Component {
     } else if (!staticContext) {
       if (!received) { // constructor set it if data have been served by server
         makeFetcher(consumsersFetchUrl, consumsersFetchData)()
-          .catch(e => this.setState({
-            ...this.state,
-            fetchedData: null,
-            loading: false,
-            invalid: (e || true),
-            received: false,
-          }))
           .then(x => this.setState({
             ...this.state,
             fetchedData: x,
@@ -71,6 +64,15 @@ class JSONDataFetcher extends Component {
             invalid: false,
             received: true,
           }))
+          .catch((e) => {
+            this.setState({
+              ...this.state,
+              fetchedData: null,
+              loading: false,
+              invalid: (`${e}` || true),
+              received: false,
+            })
+          })
       }
     }
   }

@@ -1,15 +1,15 @@
-import Loadable from 'react-loadable'
+// import Loadable from 'react-loadable'
 import Home from './Home'
 import Posts from './Posts'
 import Post from './Post'
-import Loading from './Loading'
+// import Loading from './Loading'
 
-const makeLoadable = modulePath => ( // eslint-disable-line no-unused-vars
-  Loadable({
-    loader: () => import(`${modulePath}`),
-    loading: Loading,
-  })
-)
+// const makeLoadable = modulePath => ( // eslint-disable-line no-unused-vars
+//   Loadable({
+//     loader: () => import(`${modulePath}`),
+//     loading: Loading,
+//   })
+// )
 
 const routes = [
   {

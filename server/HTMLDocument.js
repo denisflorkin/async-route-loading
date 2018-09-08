@@ -1,6 +1,6 @@
 
 /* eslint-disable indent */
-const htmlTemplate = (children, filledContext) => `
+const htmlTemplate = (children, filledContext, webpackManifest) => `
   <html lang="en">
     <head>
       <meta charSet="UTF-8" />
@@ -17,7 +17,17 @@ const htmlTemplate = (children, filledContext) => `
           window.DATA = ${JSON.stringify(filledContext.data)}
         </script>
       `)}
-      <script type="text/javascript" src="/app.js"></script>
+      ${
+        webpackManifest && Object.keys(webpackManifest)
+          .map((fileKey) => {
+            if (fileKey.indexOf('.map') === -1) {
+              return (
+                `<script type="text/javascript" src="/${webpackManifest[fileKey]}"></script>`
+              )
+            }
+            return ''
+          }).join('')
+      }
     </body>
   </html>
 `

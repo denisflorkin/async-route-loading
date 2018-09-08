@@ -1,9 +1,10 @@
 const React = require('react')
 const { renderToString } = require('react-dom/server')
 const express = require('express')
+const fetch = require('node-fetch')
 const { AppServer } = require('../build/App')
 const htmlTemplate = require('./HTMLDocument')
-const fetch = require('node-fetch')
+const webpackManifest = require('../dist/manifest.json')
 
 /**
  * Make fetch available globally
@@ -15,7 +16,7 @@ const app = express()
 
 const PORT = process.env.PORT || 3000
 
-app.use('/app.js', express.static('dist/app.js'))
+app.use('/', express.static('dist/'))
 
 app.get('*', (req, res) => {
   const context = {
@@ -41,10 +42,6 @@ app.get('*', (req, res) => {
   )
 
   allPromises
-    .catch((err) => {
-      res.sendStatus(500)
-      res.send(`Snaaaaap! An error occured. \n ${err}`)
-    })
     .then((data) => {
       const filledContext = {
         ...context,
@@ -60,7 +57,12 @@ app.get('*', (req, res) => {
         )
       )
 
-      res.send(htmlTemplate(`${reactApp}`, filledContext))
+      res.send(htmlTemplate(`${reactApp}`, filledContext, webpackManifest))
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send(`Snaaaaap! An error occured. \n ${err}`)
     })
 })
 

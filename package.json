@@ -6,7 +6,7 @@
   "scripts": {
     "help": "uxi-cli",
     "dev": "uxi-cli dev",
-    "build": "uxi-cli build",
+    "build": "uxi-cli build && rm dist/index.html",
     "lint": "uxi-cli lint ./src",
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
@@ -22,7 +22,10 @@
     "react-dom": "^16.5.0",
     "react-loadable": "^5.5.0",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "uxi-cli": "^1.0.79"
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "uxi-cli": "^1.0.79",
+    "webpack-manifest-plugin": "^2.0.3"
   }
 }
