@@ -17,5 +17,5 @@ const Post = ({ data, invalid, loading }) => {
 Post.displayName = 'Post'
 
 export default withData(
-  ({ match: { params: { id } } }) => `https://jsonplaceholder.typicode.com/posts/${id}`
+  ({ match }) => `https://jsonplaceholder.typicode.com/posts/${match && match.params && match.params.id}`
 )(Post)

@@ -20,16 +20,19 @@ app.use('/', express.static('dist/'))
 
 app.get('*', (req, res) => {
   const context = {
+    components: {},
     data: {},
     ssr: true,
   }
 
   // gather promises in context
-  renderToString(
+  const firstPass = renderToString(
     React.createElement(
       AppServer, { context, location: req.url }
     )
   )
+
+  console.log('firstPass', firstPass)
 
   const keys = Object
     .keys(context.data)

@@ -108,8 +108,8 @@ const withData = (fetchUrl, fetchData) => Comp => props => (
   <JSONDataFetcher
     {...props}
     ConsumersComponent={Comp}
-    consumsersFetchUrl={fetchUrl && fetchUrl(props)}
-    consumsersFetchData={fetchData && fetchData(props)}
+    consumsersFetchUrl={fetchUrl && fetchUrl((props || {}))}
+    consumsersFetchData={fetchData && fetchData(props || {})}
   />
 )
 

@@ -18,6 +18,7 @@ module.exports = (config) => {
 
   config = {
     ...config,
+    // mode: 'development',
     entry: {
       main: './src/index.js',
       // vendor: [
@@ -34,7 +35,7 @@ module.exports = (config) => {
       // chunkFilename: '[id].[chunkhash].js',
     },
     plugins: [
-      ...config.plugins,
+      // ...config.plugins,
       new ManifestPlugin(),
     ],
     // entry: {
