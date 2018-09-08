@@ -1,10 +1,20 @@
+import Loadable from 'react-loadable'
 import Home from './Home'
 import Posts from './Posts'
 import Post from './Post'
+import Loading from './Loading'
 
-export default [
+const makeLoadable = modulePath => (
+  Loadable({
+    loader: () => import(`${modulePath}`),
+    loading: Loading,
+  })
+)
+
+const routes = [
   {
     inMainMenu: true,
+    componentPath: './Home',
     props: {
       path: '/',
       key: 'home',
@@ -14,6 +24,7 @@ export default [
   },
   {
     inMainMenu: true,
+    componentPath: './Posts',
     props: {
       path: '/posts',
       key: 'posts',
@@ -22,6 +33,7 @@ export default [
   },
   {
     inMainMenu: false,
+    componentPath: './Post',
     props: {
       path: '/post/:id',
       key: 'post',
@@ -29,3 +41,12 @@ export default [
     },
   },
 ]
+
+
+export default routes.map(route => ({
+  ...route,
+  props: {
+    ...route.props,
+    component: makeLoadable(route.componentPath),
+  },
+}))
