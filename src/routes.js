@@ -4,7 +4,7 @@ import Posts from './Posts'
 import Post from './Post'
 import Loading from './Loading'
 
-const makeLoadable = modulePath => (
+const makeLoadable = modulePath => ( // eslint-disable-line no-unused-vars
   Loadable({
     loader: () => import(`${modulePath}`),
     loading: Loading,
@@ -47,6 +47,6 @@ export default routes.map(route => ({
   ...route,
   props: {
     ...route.props,
-    component: makeLoadable(route.componentPath),
+    // component: makeLoadable(route.componentPath),
   },
 }))

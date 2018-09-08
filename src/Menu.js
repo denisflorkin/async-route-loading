@@ -6,7 +6,7 @@ const Menu = ({ routes }) => (
   <List style={{ display: 'flex' }}>
     {
       routes.filter(r => r.inMainMenu).map(route => (
-        <li style={{ padding: '8px' }}>
+        <li key={route.props.key} style={{ padding: '8px' }}>
           <Link to={route.props.path} >{route.props.key} </Link>
         </li>
       ))

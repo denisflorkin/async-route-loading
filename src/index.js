@@ -1,11 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { hydrate } from 'react-dom'
 import App from './App'
-
 
 const selector = '#root'
 
-ReactDOM.render(
+hydrate(
   <App />,
   document.querySelector(selector)
 )

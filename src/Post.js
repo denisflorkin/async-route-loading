@@ -1,52 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import withData from './withData'
 
-class Post extends Component {
-  constructor(props) {
-    super(props)
+const Post = ({ data, invalid, loading }) => {
+  if (loading) { return 'Loading...' }
 
-    this.state = {
-      loading: true,
-      invalid: false,
-      received: false,
-      post: null,
-    }
-  }
+  if (invalid) { return 'error' }
 
-  componentDidMount() {
-    // const { loading, invalid, received } = this.state
-    const { match: { params: { id } } } = this.props
-
-
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then(response => response.json())
-      .then(post => this.setState({
-        post,
-        received: true,
-        loading: false,
-        invalid: false,
-      }))
-      .catch(e => this.setState({ invalid: (e || true), loading: false }))
-  }
-
-  render() {
-    const { post } = this.state
-    const { loading, invalid } = this.state
-
-    if (invalid) {
-      return 'error'
-    }
-
-    if (!post || loading) {
-      return 'loading'
-    }
-
-    return (
-      <div key={post.title}>
-        <h2>{post.title}</h2>
-        <div>{post.body}</div>
-      </div>
-    )
-  }
+  return (
+    <div key={data.title}>
+      <h2>{data.title}</h2>
+      <div>{data.body}</div>
+    </div>
+  )
 }
 
-export default Post
+Post.displayName = 'Post'
+
+export default withData(
+  ({ match: { params: { id } } }) => `https://jsonplaceholder.typicode.com/posts/${id}`
+)(Post)

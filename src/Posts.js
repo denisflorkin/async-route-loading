@@ -1,48 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import List from './List'
+import withData from './withData'
 
-class Posts extends Component {
-  constructor(props) {
-    super(props)
+const Posts = ({ data, invalid, loading }) => {
+  if (loading) { return 'Loading...' }
 
-    this.state = {
-      loading: false,
-      invalid: false,
-      received: false,
-      posts: [],
-    }
-  }
+  if (invalid) { return 'invalid...' }
 
-  componentDidMount() {
-    // const { loading, invalid, received } = this.state
-
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(posts => console.log(posts) || posts)
-      .then(posts => this.setState({
-        posts: posts.slice(0, 15),
-        received: true,
-        loading: false,
-        invalid: false,
-      }))
-  }
-
-  render() {
-    const { posts } = this.state
-
-    return posts.map(post => (
-      <List>
-        <Link to={`/post/${post.id}`}>
-          {
-            post.title.length >= 50
-              ? `${post.title.slice(0, 46)}...`
-              : post.title
-          }
-        </Link>
-      </List>
-    ))
-  }
+  return data.slice(0, 15).map(post => (
+    <List>
+      <Link to={`/post/${post.id}`}>
+        {
+          post.title.length >= 50
+            ? `${post.title.slice(0, 46)}...`
+            : post.title
+        }
+      </Link>
+    </List>
+  ))
 }
 
-export default Posts
+Posts.displayName = 'Posts'
+
+export default withData(
+  () => 'https://jsonplaceholder.typicode.com/posts'
+)(Posts)
