@@ -14,7 +14,7 @@
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
-    "pack": "rm -rf build/* && uxi-cli pack"
+    "pack": "rm -rf build/* && uxi-cli pack && rm -f build/routesClients.js"
   },
   "author": "",
   "license": "ISC",
