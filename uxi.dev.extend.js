@@ -16,5 +16,12 @@ module.exports = (config) => {
   // config.entry[1].replace(/(:\d*)$/, ':8989')
 
 
-  return config
+  return {
+    ...config,
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
+    }
+  }
 }

@@ -19,15 +19,22 @@ const htmlTemplate = (children, filledContext, webpackManifest) => `
       `)}
       ${
         webpackManifest && Object.keys(webpackManifest)
+          // .filter(x => (
+          //   !(x.indexOf('-chunk-') > -1) && x.indexOf('vendors') === -1
+          // ))
+          // .filter(key => key.match('main') || key.match('vendors'))
+          .filter(key => !key.match(/^\d/))
           .map((fileKey) => {
             if (fileKey.indexOf('.map') === -1) {
               return (
-                `<script type="text/javascript" src="/${webpackManifest[fileKey]}"></script>`
+                `<script type="text/javascript" src="${webpackManifest[fileKey]}"></script>`
               )
             }
             return ''
           }).join('')
       }
+      <!-- <script type="text/javascript" src="/app.js"></script> -->
+
     </body>
   </html>
 `

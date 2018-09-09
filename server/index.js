@@ -5,6 +5,7 @@ const fetch = require('node-fetch')
 const { AppServer } = require('../build/App')
 const htmlTemplate = require('./HTMLDocument')
 const webpackManifest = require('../dist/manifest.json')
+// const webpackManifest = null
 
 /**
  * Make fetch available globally
@@ -60,7 +61,7 @@ app.get('*', (req, res) => {
         )
       )
 
-      res.send(htmlTemplate(`${reactApp}`, filledContext, webpackManifest))
+      res.send(htmlTemplate(`${reactApp}`, filledContext, (webpackManifest)))
     })
     .catch((err) => {
       res

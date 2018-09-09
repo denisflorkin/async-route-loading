@@ -23,12 +23,12 @@ export const AppServer = routerProps => (
     <div style={{ fontFamily: 'sans-serif' }}>
       <Menu routes={routes} />
       {
-        routes.map((route) => {
-          console.log('route.componentPath', route.componentPath, '\n')
-          console.log('new route.props.component', new route.props.component(), '\n')
+        routes.map(route =>
+          // console.log('route.componentPath', route.componentPath, '\n')
+          // console.log('new route.props.component', new route.props.component(), '\n')
 
-          return <Route {...route.props} />
-        })
+          <Route {...route.props} component={route.component} />
+        )
       }
     </div>
   </StaticRouter>

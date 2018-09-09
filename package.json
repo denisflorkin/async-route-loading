@@ -7,7 +7,7 @@
     "help": "uxi-cli",
     "dev": "uxi-cli dev",
     "build": "uxi-cli build && rm dist/index.html",
-    "lint": "uxi-cli lint ./src",
+    "lint": "uxi-cli lint --quiet --fix ./src",
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "uxi-cli": "^1.0.79",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-manifest-plugin": "^2.0.3"
   }
 }
