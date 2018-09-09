@@ -2,7 +2,7 @@
   "name": "async-loading",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "heroku-postbuild": "npm run buildAndPack",
     "start": "node .",
