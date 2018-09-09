@@ -2,7 +2,7 @@ const React = require('react')
 const { renderToString } = require('react-dom/server')
 const express = require('express')
 const fetch = require('node-fetch')
-const { AppServer } = require('../build/App')
+const { AppSSR } = require('../build/AppSSR')
 const htmlTemplate = require('./HTMLDocument')
 const webpackManifest = require('../dist/manifest.json')
 // const webpackManifest = null
@@ -29,7 +29,7 @@ app.get('*', (req, res) => {
   // gather promises in context
   const firstPass = renderToString(
     React.createElement(
-      AppServer, { context, location: req.url }
+      AppSSR, { context, location: req.url }
     )
   )
 
@@ -57,7 +57,7 @@ app.get('*', (req, res) => {
 
       const reactApp = renderToString(
         React.createElement(
-          AppServer, { context: filledContext, location: req.url }
+          AppSSR, { context: filledContext, location: req.url }
         )
       )
 

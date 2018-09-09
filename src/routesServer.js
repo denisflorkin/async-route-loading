@@ -1,6 +1,9 @@
-import Loadable from 'react-loadable'
 import Home from './Home'
-import Loading from './Loading'
+import Page2 from './Page2'
+import Page3 from './Page3'
+import About from './About'
+import Posts from './Posts'
+import Post from './Post'
 
 const routes = [
   {
@@ -17,20 +20,14 @@ const routes = [
     props: {
       path: '/page2',
       key: 'page2',
-      component: Loadable({
-        loader: () => import('./Page2'),
-        loading: Loading,
-      }),
+      component: Page2,
       exact: true,
     },
   },
   {
     inMainMenu: true,
     props: {
-      component: Loadable({
-        loader: () => import('./Page3'),
-        loading: Loading,
-      }),
+      component: Page3,
       path: '/page3',
       key: 'page3',
       exact: true,
@@ -39,10 +36,7 @@ const routes = [
   {
     inMainMenu: true,
     props: {
-      component: Loadable({
-        loader: () => import('./About'),
-        loading: Loading,
-      }),
+      component: About,
       path: '/about',
       key: 'about',
       exact: true,
@@ -54,10 +48,7 @@ const routes = [
     props: {
       path: '/posts',
       key: 'posts',
-      component: Loadable({
-        loader: () => import('./Posts'),
-        loading: Loading,
-      }),
+      component: Posts,
     },
   },
   {
@@ -65,14 +56,9 @@ const routes = [
     props: {
       path: '/post/:id',
       key: 'post',
-      component: Loadable({
-        loader: () => import('./Post'),
-        loading: Loading,
-      }),
+      component: Post,
     },
   },
 ]
 
-export default routes.map(route => ({
-  ...route,
-}))
+export default routes
