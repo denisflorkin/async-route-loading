@@ -61,7 +61,7 @@ app.get('*', (req, res) => {
         )
       )
 
-      res.send(htmlTemplate(`${reactApp}`, filledContext, (webpackManifest)))
+      res.send(htmlTemplate(`${reactApp}`, filledContext, webpackManifest))
     })
     .catch((err) => {
       res

@@ -18,10 +18,10 @@ const routes = [
   {
     inMainMenu: true,
     componentPath: './Home',
-    component: Loadable({
-      loader: () => import('./Home'),
-      loading: Loading,
-    }),
+    // component: Loadable({
+    //   loader: () => import('./Home'),
+    //   loading: Loading,
+    // }),
     component: Home,
     props: {
       path: '/',
@@ -47,10 +47,11 @@ const routes = [
   {
     inMainMenu: true,
     componentPath: './Page3',
-    component: Loadable({
-      loader: () => import('./Page3'),
-      loading: Loading,
-    }),
+    // component: Loadable({
+    //   loader: () => import('./Page3'),
+    //   loading: Loading,
+    // }),
+    component: Page3,
     props: {
       path: '/page3',
       key: 'page3',
@@ -61,10 +62,11 @@ const routes = [
   {
     inMainMenu: true,
     componentPath: './About',
-    component: Loadable({
-      loader: () => import('./About'),
-      loading: Loading,
-    }),
+    // component: Loadable({
+    //   loader: () => import('./About'),
+    //   loading: Loading,
+    // }),
+    component: About,
     props: {
       path: '/about',
       key: 'about',
@@ -75,10 +77,11 @@ const routes = [
   {
     inMainMenu: true,
     componentPath: './Posts',
-    component: Loadable({
-      loader: () => import('./Posts'),
-      loading: Loading,
-    }),
+    // component: Loadable({
+    //   loader: () => import('./Posts'),
+    //   loading: Loading,
+    // }),
+    component: Posts,
     props: {
       path: '/posts',
       key: 'posts',
@@ -88,10 +91,11 @@ const routes = [
   {
     inMainMenu: false,
     componentPath: './Post',
-    component: Loadable({
-      loader: () => import('./Post'),
-      loading: Loading,
-    }),
+    // component: Loadable({
+    //   loader: () => import('./Post'),
+    //   loading: Loading,
+    // }),
+    component: Post,
     props: {
       path: '/post/:id',
       key: 'post',

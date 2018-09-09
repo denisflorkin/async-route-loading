@@ -1,10 +1,4 @@
 import React, { Component } from 'react'
-import Loadable from 'react-loadable'
-
-import('./foo').then((x) => {
-  console.log(x)
-})
-
 
 class Page2 extends Component {
   constructor(props) {
@@ -15,10 +9,11 @@ class Page2 extends Component {
   }
 
   componentDidMount() {
-    import('./foo').then(x => (
-      console.log(x) ||
+    import('./foo').then(({ default: foo }) => {
+      console.log(foo)
+      foo()
       this.setState({ text: 'foo loaded' })
-    ))
+    })
   }
 
   render() {

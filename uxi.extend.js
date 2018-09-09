@@ -9,6 +9,7 @@ module.exports = (config) => {
     ...config,
     entry: {
       main: './src/index.js',
+      // page2: './src/Page2.js',
       // vendors: [
       //   'react',
       //   'react-dom',
@@ -19,27 +20,35 @@ module.exports = (config) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].app.js',
+      filename: '[name].js',
       publicPath: '/'
     },
     plugins: [
-      new ManifestPlugin(),
+      new ManifestPlugin({
+        filter: x => x.isChunk
+      }),
       new BundleAnalyzerPlugin(),
     ],
     optimization: {
       splitChunks: {
         // chunks: 'all',
+        automaticNameDelimiter: '-chunk-',
         cacheGroups: {
           node_vendors: {
             test: /[\\/]node_modules[\\/]/,
             priority: 1,
             chunks: 'all'
           },
-          routes: {
-            test: /[\\/]src[\\/]/,
-            priority: 1,
-            chunks: 'async'
-          },
+          // routes: {
+          //   test: /[\\/]src[\\/]/,
+          //   priority: 1,
+          //   chunks: 'async'
+          // },
+          default: {
+            minChunks: 6,
+            priority: -20,
+            reuseExistingChunk: true
+          }
         }
       }
     }
