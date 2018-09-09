@@ -6,12 +6,12 @@
   "scripts": {
     "help": "uxi-cli",
     "dev": "uxi-cli dev",
-    "build": "uxi-cli build && rm dist/index.html",
+    "build": "npm run pack && rm -rf dist/* && uxi-cli build && rm dist/index.html",
     "lint": "uxi-cli lint --quiet --fix ./src",
     "test": "uxi-cli test",
     "test:coverage": "uxi-cli test:coverage",
     "test:watch": "uxi-cli test:watch",
-    "pack": "uxi-cli pack"
+    "pack": "rm -rf build/* && uxi-cli pack"
   },
   "author": "",
   "license": "ISC",

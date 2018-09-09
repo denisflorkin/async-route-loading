@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import List from './List'
 import withData from './withData'
 
+const truncateIfNeeded = string => (string.length >= 50
+  ? `${string.slice(0, 46)}...`
+  : string
+)
+
 const Posts = ({ data, invalid, loading }) => {
   if (loading) { return 'Loading...' }
 
@@ -11,11 +16,7 @@ const Posts = ({ data, invalid, loading }) => {
   return data.slice(0, 15).map(post => (
     <List>
       <Link to={`/post/${post.id}`}>
-        {
-          post.title.length >= 50
-            ? `${post.title.slice(0, 46)}...`
-            : post.title
-        }
+        {truncateIfNeeded(post.title)}
       </Link>
     </List>
   ))

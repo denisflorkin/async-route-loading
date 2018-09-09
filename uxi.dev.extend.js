@@ -4,23 +4,28 @@ const path = require('path')
 /* eslint-disable */
 
 module.exports = (config) => {
-  // here we're ading 'raw-loader' for md files
-  // config.module.rules.push({
-  //   test: /\.md$/,
-  //   use: 'raw-loader',
-  //   exclude: /node_modules/,
-  // })
-
-  // custom port for dev server:
-  // config.devServer.port = 8989
-  // config.entry[1].replace(/(:\d*)$/, ':8989')
-
-
   return {
     ...config,
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+      publicPath: '/'
+    },
     optimization: {
       splitChunks: {
-        chunks: 'all'
+        automaticNameDelimiter: '-chunk-',
+        cacheGroups: {
+          node_vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: 1,
+            chunks: 'all'
+          },
+          default: {
+            minChunks: 6,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
       }
     }
   }

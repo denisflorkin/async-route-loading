@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, StaticRouter, Route } from 'react-router-dom'
+import global from './global' // eslint-disable-line no-unused-vars
 import Menu from './Menu'
 import routes from './routes'
 
 export const makeAppWithRouter = (Router = BrowserRouter, routerProps = {}) => (
-  console.log('routerProps', routerProps, '\n') ||
   <Router {...routerProps}>
     <div style={{ fontFamily: 'sans-serif' }}>
       <Menu routes={routes} />
@@ -13,7 +13,6 @@ export const makeAppWithRouter = (Router = BrowserRouter, routerProps = {}) => (
           <Route {...route.props} />
         ))
       }
-
     </div>
   </Router>
 )
@@ -24,10 +23,7 @@ export const AppServer = routerProps => (
       <Menu routes={routes} />
       {
         routes.map(route =>
-          // console.log('route.componentPath', route.componentPath, '\n')
-          // console.log('new route.props.component', new route.props.component(), '\n')
-
-          <Route {...route.props} component={route.component} />
+          <Route {...route.props} />
         )
       }
     </div>

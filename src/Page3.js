@@ -1,30 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Page3 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: '',
-    }
-  }
-
-  componentDidMount() {
-    import('./bar').then(({ default: bar }) => {
-      console.log(bar)
-      bar()
-      this.setState({ text: 'bar loaded' })
-    })
-  }
-
-  render() {
-    const { text } = this.state
-    return (
-      <div>
-        Page3
-        {text}
-      </div>
-    )
-  }
-}
+const Page3 = () => (
+  <div>
+    Page3
+  </div>
+)
 
 export default Page3
